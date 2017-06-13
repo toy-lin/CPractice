@@ -1,6 +1,7 @@
 #include "AlGraph.h"
 #include "../linearlist/Stack.h"
 #include <iostream>
+using namespace std;
 
 void traverse(ALGraph &g);
 void visit(VNode *vp);
@@ -17,17 +18,17 @@ void traverse(ALGraph &g){
 	Stack s;
 	initStack(s);
 	bool visited[g.vexnum];
-	for(int i= 0; i< g.vexnum;i+)
+	for(int i= 0; i< g.vexnum;i++)
 		visited[i] =false;
 
 	for(int i= 0 ;i < g.vexnum ;i++){
+		if(visited[i])continue;
 		VNode* vp = &g.vertices[i];
 		while(vp!=NULL||!isStackEmpty(s)){
 			int index = i;
 			if(vp == NULL){
-				int index = 0;
 				pop(s,index);
-				vp = g.vertices[index];
+				vp = &g.vertices[index];
 			}
 			if(!visited[i]){
 				visit(vp);
