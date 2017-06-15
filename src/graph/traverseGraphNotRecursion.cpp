@@ -24,25 +24,30 @@ void traverse(ALGraph &g){
 	for(int i= 0 ;i < g.vexnum ;i++){
 		if(visited[i])continue;
 		VNode* vp = &g.vertices[i];
+		int index = i;
 		while(vp!=NULL||!isStackEmpty(s)){
-			int index = i;
 			if(vp == NULL){
 				pop(s,index);
 				vp = &g.vertices[index];
 			}
-			if(!visited[i]){
-				visit(vp);
-				visited[i] = true;
+			if(visited[index]){
+				vp = NULL;
+				continue;
 			}
+			visit(vp);
+			visited[index] = true;
+			
 			ArcNode* ap = vp->first;
 			if(ap !=NULL){
 				vp = &g.vertices[ap->adjvex];
-			}
-			ap = ap->next;
-			while(ap!=NULL){
-				if(!visited[i])
-					push(s,ap->adjvex);
+				index = ap->adjvex;
+			
 				ap = ap->next;
+				while(ap!=NULL){
+					if(!visited[ap->adjvex])
+						push(s,ap->adjvex);
+					ap = ap->next;
+				}
 			}
 		}
 	}

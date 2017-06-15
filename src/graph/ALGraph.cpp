@@ -30,7 +30,7 @@ ALGraph makeALGraph(){
 	v3.first = (ArcNode*)malloc(sizeof(ArcNode));
 	v3.first->adjvex = 4;
 	v3.first->next = (ArcNode*)malloc(sizeof(ArcNode));
-	v3.first->next->adjvex = 6;
+	v3.first->next->adjvex = 5;
 	v3.first->next->next = NULL;
 
 	VNode v4;
